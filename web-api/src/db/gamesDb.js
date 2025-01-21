@@ -9,7 +9,7 @@ export const getAllGames = async () => {
     return contents;
 }
 
-export const getGameById = id => {
+export const getGameByName = name => {
 
 }
 

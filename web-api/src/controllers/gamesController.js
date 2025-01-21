@@ -10,7 +10,7 @@ export const getAllGames = async (req, res) => {
     })
 }
 
-export const getGameById = (req, res) => {
+export const getGameByName = (req, res) => {
 
 }
 
