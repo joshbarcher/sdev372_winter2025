@@ -24,16 +24,6 @@
         "rating": 100
     },
     {
-        "title": "Astro Bot",
-        "release_date": "2024-09-06",
-        "platforms": [
-            "PlayStation 5"
-        ],
-        "genre": "Platformer",
-        "developer": "Team Asobi",
-        "rating": 94
-    },
-    {
         "title": "Metaphor: ReFantazio",
         "release_date": "2024-10-11",
         "platforms": [

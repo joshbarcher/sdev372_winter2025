@@ -8,6 +8,6 @@ router.get("/", getAllGames);
 router.get("/:gameName", getGameByName);
 router.post("/", addGame);
 router.put("/", updateGame);
-router.delete("/", deleteGame);
+router.delete("/:title", deleteGame);
 
 export default router;

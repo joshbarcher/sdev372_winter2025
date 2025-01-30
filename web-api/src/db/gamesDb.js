@@ -47,6 +47,15 @@ export const updateGame = async (updatedGame) => {
     }
 }
 
-export const deleteGame = id => {
+export const deleteGame = async title => {
+    let contents = await fs.readFile('./src/db/games.json');
+    contents = JSON.parse(contents); //convert buffered JSON text to JS object
+
+    const numRecords = contents.length;
+    contents = contents.filter(game => game.title !== title);
+
+    await fs.writeFile('./src/db/games.json', JSON.stringify(contents, null, 4));
     
+    //return success or not?
+    return numRecords !== contents.length;
 }

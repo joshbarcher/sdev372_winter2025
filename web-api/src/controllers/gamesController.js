@@ -54,6 +54,18 @@ export const updateGame = async (req, res) => {
     }
 }
 
-export const deleteGame = (req, res) => {
-    
+export const deleteGame = async (req, res) => {
+    const found = await db.deleteGame(req.params.title);
+
+    if (found) { //found
+        res.status(200);
+        res.json({
+            message: "Deleted game!"
+        })
+    } else { //not found!
+        res.status(404);
+        res.json({
+            message: `Game ${req.params.title} not found`
+        })
+    }
 }
