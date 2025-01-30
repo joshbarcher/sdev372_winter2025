@@ -26,8 +26,25 @@ export const addGame = async (gameData) => {
     return gameData;
 }
 
-export const updateGame = updatedGame => {
+export const updateGame = async (updatedGame) => {
+    let contents = await fs.readFile('./src/db/games.json');
+    contents = JSON.parse(contents); //convert buffered JSON text to JS object
+
+    const found = contents.find(game => game.title === updatedGame.title);
+    if (found) {
+        //copy new values (leave the name/id alone)
+        found.release_date = updatedGame.release_date;
+        found.platforms = updatedGame.platforms;
+        found.genre = updatedGame.genre;
+        found.developer = updatedGame.developer;
+        found.rating = updatedGame.rating;
     
+        await fs.writeFile('./src/db/games.json', JSON.stringify(contents, null, 4));
+    
+        return updatedGame;
+    } else {
+        return null;
+    }
 }
 
 export const deleteGame = id => {

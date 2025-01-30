@@ -28,7 +28,6 @@ export const getGameByName = async (req, res) => {
 }
 
 export const addGame = async (req, res) => {
-    console.log(req.body);
     const addedGame = await db.addGame(req.body);
 
     res.status(201);
@@ -38,8 +37,21 @@ export const addGame = async (req, res) => {
     })
 }
 
-export const updateGame = (req, res) => {
-    
+export const updateGame = async (req, res) => {
+    const updatedGame = await db.updateGame(req.body);
+
+    if (updatedGame) { //found
+        res.status(200);
+        res.json({
+            message: "Updated game!",
+            data: updatedGame
+        })
+    } else { //not found!
+        res.status(404);
+        res.json({
+            message: `Game ${req.body.title} not found`
+        })
+    }
 }
 
 export const deleteGame = (req, res) => {
