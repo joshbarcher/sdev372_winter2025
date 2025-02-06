@@ -8,4 +8,5 @@ app.use(express.json());
 
 app.use("/api/v1/games", router);
 
-app.listen(8001, () => console.log('Server started on 8001'));
+const PORT = 3002;
+app.listen(PORT, () => console.log(`Server started on ${PORT}`));
