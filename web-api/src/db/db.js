@@ -15,7 +15,17 @@ export const getGameByName = async (name) => {
 }
 
 export const addGame = async (gameData) => {
-    
+    const [results] = await connection.query(
+        "INSERT INTO games (title, release_date, genre, developer, rating) VALUES (?, ?, ?, ?, ?)", 
+        [
+            gameData.title, 
+            gameData.release_date, 
+            gameData.genre,
+            gameData.developer, 
+            gameData.rating
+        ]
+    );
+    return results;
 }
 
 export const updateGame = async (updatedGame) => {
