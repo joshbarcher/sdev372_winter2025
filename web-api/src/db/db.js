@@ -33,5 +33,8 @@ export const updateGame = async (updatedGame) => {
 }
 
 export const deleteGame = async title => {
-    
+    const [results] = await connection.query("DELETE FROM games WHERE title=?", 
+        [title]
+    )
+    return results;
 }

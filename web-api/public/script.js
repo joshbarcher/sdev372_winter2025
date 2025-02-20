@@ -59,11 +59,16 @@ function loadUI(games) {
 function addGame(game, main) {
     //create DOM elements
     const section = document.createElement("section");
+    const buttonDelete = document.createElement("button");
     const h2 = document.createElement("h2");
     const ul = document.createElement("ul");
 
     //add properties
     h2.innerHTML = game.title;
+    buttonDelete.className = "delete";
+    buttonDelete.innerHTML = "x";
+
+    buttonDelete.onclick = deleteGame;
 
     const details = [game.genre, game.developer, game.rating, game.release_date];
 
@@ -72,9 +77,25 @@ function addGame(game, main) {
     }
 
     //nest elements
+    section.appendChild(buttonDelete);
     section.appendChild(h2);
     section.appendChild(ul);
     main.appendChild(section);
+}
+
+async function deleteGame(event) {
+    //get the title of the game
+    const title = event.target.parentElement.children[1].innerHTML;
+    console.log(title);
+
+    //make the DELETE request to the server...
+    const result = await fetch(`/api/v1/games/${title}`, {
+        method: "delete",
+        mode: "cors"
+    })
+
+    //remove the parent game section
+    event.target.parentElement.remove();
 }
 
 function addGameDetail(ul, detail) {
